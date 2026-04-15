@@ -4,7 +4,7 @@ import csv
 import os
 import math
 
-CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "filmovi.csv")
+CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pjesme.csv")
 
 STAR_COLOR = "#FFD700"
 STAR_EMPTY = "#555555"
@@ -131,7 +131,7 @@ class FilmTable(tk.Frame):
 
         # Placeholder
         self.empty_label = tk.Label(
-            self.canvas, text="Nema filmova. Dodaj prvi!",
+            self.canvas, text="Nema pjesama. Dodaj prvu!",
             fg="#888888", bg=BG_TABLE, font=("Arial", 12)
         )
 
@@ -280,7 +280,7 @@ class RoundedButton(tk.Canvas):
 class Filmoteka:
     def __init__(self, root):
         self.root = root
-        self.root.title("Moja Filmoteka")
+        self.root.title("Spotify")
         self.root.geometry("850x550")
         self.root.minsize(750, 500)
         self.root.configure(bg=BG_DARK)
@@ -298,11 +298,11 @@ class Filmoteka:
         # ── Header ──
         header = tk.Frame(self.root, bg=TEAL)
         header.grid(row=0, column=0, sticky="ew")
-        tk.Label(header, text="Moja Filmoteka", font=("Arial", 22, "bold"),
+        tk.Label(header, text="Spotify", font=("Arial", 22, "bold"),
                  fg="white", bg=TEAL).pack(pady=(14, 14))
 
         # ── Dodaj novi film ──
-        tk.Label(self.root, text="Dodaj novu pjesmu", font=("Arial", 11, "bold"),
+        tk.Label(self.root, text="Dodaj novi film", font=("Arial", 11, "bold"),
                  fg="white", bg=BG_DARK, anchor="w"
                  ).grid(row=1, column=0, sticky="w", padx=25, pady=(0, 6))
 
@@ -314,7 +314,7 @@ class Filmoteka:
         input_row.columnconfigure(7, weight=1)
 
         fields = [
-            ("Naziv filma:", 1, 220), ("Žanr:", 3, 140),
+            ("Naziv pjesme:", 1, 220), ("Žanr:", 3, 140),
             ("Godina:", 5, 90), ("Ocjena:", 7, 70)
         ]
         self.entries = []
@@ -330,11 +330,11 @@ class Filmoteka:
         # Dugme Dodaj
         btn_add_frame = tk.Frame(self.root, bg=BG_DARK)
         btn_add_frame.grid(row=3, column=0, pady=(10, 0))
-        RoundedButton(btn_add_frame, text="+ Dodaj film", width=170, height=36,
+        RoundedButton(btn_add_frame, text="+ Dodaj pjesmu", width=170, height=36,
                       radius=14, bg_color=TEAL, command=self.dodaj_film).pack()
 
         # ── Kolekcija filmova ──
-        tk.Label(self.root, text="Kolekcija filmova  \u2014 klikni na red da ga odabereš",
+        tk.Label(self.root, text="Kolekcija pjesama  \u2014 klikni na red da ga odabereš",
                  font=("Arial", 11, "bold"), fg="white", bg=BG_DARK, anchor="w"
                  ).grid(row=4, column=0, sticky="nw", padx=25, pady=(14, 4))
 
@@ -392,7 +392,7 @@ class Filmoteka:
     def _validate(self, naziv, zanr, godina, ocjena, parent=None):
         parent = parent or self.root
         if not naziv:
-            messagebox.showerror("Greška", "Naziv filma je obavezan!", parent=parent)
+            messagebox.showerror("Greška", "Naziv pjesme je obavezan!", parent=parent)
             return False
         if not zanr:
             messagebox.showerror("Greška", "Žanr je obavezan!", parent=parent)
@@ -435,12 +435,12 @@ class Filmoteka:
     def izmijeni_film(self):
         idx = self.table.get_selected_index()
         if idx is None:
-            messagebox.showerror("Greška", "Odaberite film iz tabele za izmjenu!")
+            messagebox.showerror("Greška", "Odaberite pjesmu iz tabele za izmjenu!")
             return
         film = self.filmovi[idx]
 
         popup = tk.Toplevel(self.root)
-        popup.title("Izmijeni film")
+        popup.title("Izmijeni pjesmu")
         popup.configure(bg=BG_DARK)
         popup.geometry("440x300")
         popup.minsize(380, 280)
@@ -448,10 +448,10 @@ class Filmoteka:
         popup.grab_set()
         popup.columnconfigure(1, weight=1)
 
-        tk.Label(popup, text="Izmijeni film", font=("Arial", 15, "bold"),
+        tk.Label(popup, text="Izmijeni pjesmu", font=("Arial", 15, "bold"),
                  fg=TEAL, bg=BG_DARK).grid(row=0, column=0, columnspan=2, pady=(18, 12))
 
-        labels = ["Naziv filma:", "Žanr:", "Godina:", "Ocjena (1-10):"]
+        labels = ["Naziv pjesme:", "Žanr:", "Godina:", "Ocjena (1-10):"]
         popup_entries = []
         for i, (text, val) in enumerate(zip(labels, film)):
             tk.Label(popup, text=text, fg="#bbbbbb", bg=BG_DARK,
@@ -486,11 +486,11 @@ class Filmoteka:
     def obrisi_film(self):
         idx = self.table.get_selected_index()
         if idx is None:
-            messagebox.showerror("Greška", "Odaberite film iz tabele za brisanje!")
+            messagebox.showerror("Greška", "Odaberite pjesme iz tabele za brisanje!")
             return
         naziv = self.filmovi[idx][0]
         if not messagebox.askyesno("Potvrda",
-                                   f'Da li ste sigurni da želite obrisati film "{naziv}"?'):
+                                   f'Da li ste sigurni da želite obrisati pjesmu "{naziv}"?'):
             return
         self.filmovi.pop(idx)
         self._save_csv()

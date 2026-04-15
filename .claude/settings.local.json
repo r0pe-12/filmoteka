@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls C:/Users/simon/Desktop/UDG-2/ALG/filmoteka/*.py C:/Users/simon/Desktop/UDG-2/ALG/filmoteka/*.csv)"
+    ]
+  }
+}

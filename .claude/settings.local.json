@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls C:/Users/simon/Desktop/UDG-2/ALG/filmoteka/*.py C:/Users/simon/Desktop/UDG-2/ALG/filmoteka/*.csv)"
+      "Bash(ls C:/Users/simon/Desktop/UDG-2/ALG/filmoteka/*.py C:/Users/simon/Desktop/UDG-2/ALG/filmoteka/*.csv)",
+      "Bash(python -c \"import pjesme; print\\('OK'\\)\")"
     ]
   }
 }

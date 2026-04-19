@@ -364,7 +364,7 @@ class Filmoteka:
                  ).grid(row=1, column=0, sticky="w", padx=25, pady=(0, 6))
 
         input_row = tk.Frame(self.root, bg=BG_DARK)
-        input_row.grid(row=2, column=0, sticky="ew", padx=25)
+        input_row.grid(row=5, column=0, sticky="ew", padx=25)
         input_row.columnconfigure(1, weight=4)
         input_row.columnconfigure(3, weight=2)
         input_row.columnconfigure(5, weight=1)
@@ -386,7 +386,7 @@ class Filmoteka:
 
         # Dugme Dodaj
         btn_add_frame = tk.Frame(self.root, bg=BG_DARK)
-        btn_add_frame.grid(row=3, column=0, pady=(10, 0))
+        btn_add_frame.grid(row=6, column=0, pady=(10, 0))
         RoundedButton(btn_add_frame, text="+ Dodaj pjesmu", width=170, height=36,
                       radius=14, bg_color=TEAL, command=self.dodaj_film).pack()
 
@@ -410,12 +410,12 @@ class Filmoteka:
         # ── Kolekcija filmova ──
         tk.Label(self.root, text="Kolekcija pjesama  \u2014 klikni na red da ga odabereš",
                  font=("Arial", 11, "bold"), fg="white", bg=BG_DARK, anchor="w"
-                 ).grid(row=5, column=0, sticky="nw", padx=25, pady=(10, 4))
+                 ).grid(row=2, column=0, sticky="nw", padx=25, pady=(10, 4))
 
         # Tabela
         self.table = FilmTable(self.root, on_sort=self._on_sort,
                                on_favorite=self._toggle_favorite)
-        self.table.grid(row=6, column=0, padx=25, sticky="nsew")
+        self.table.grid(row=3, column=0, padx=25, sticky="nsew")
         self.table.bind_delete(self.obrisi_film)
 
         # ── Dugmad na dnu ──
